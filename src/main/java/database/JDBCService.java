@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import service.Article;
+//import service.rpc.Article;
 
 public class JDBCService {
 	
@@ -18,8 +18,9 @@ public class JDBCService {
 	
 	private JDBCService() {
 		try {
+			System.out.println("Creating JDBC");
 			Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection("jdbc:sqlite:database//article_db.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:E:/programming/aipos_server/ThriftServer/database//article_db.db");
 			connection.setAutoCommit(false);
 			statement = connection.createStatement();
 			System.out.println("Database activated");
@@ -32,8 +33,10 @@ public class JDBCService {
 	}
 	
 	public static JDBCService getInstance() {
-		if(jdbcservice == null)
+		if(jdbcservice == null) {
+			System.out.println("New instance of JDBC");
 			jdbcservice = new JDBCService();
+		}
 		return jdbcservice;
 	}
 	
@@ -75,15 +78,15 @@ public class JDBCService {
 		executeOperation("CREATE TABLE articles(name varchar(100) NOT NULL UNIQUE, value varchar(100));");
 	}
 	
-	public void addContent(Article article) {
-		executeOperation("INSERT INTO articles(name, value) VALUES('" + article.getName() + "', '" + article.getValue() + "');");
+	public void addContent(String name, String value) {
+		executeOperation("INSERT INTO articles(name, value) VALUES('" + name + "', '" + value + "');");
 	}
 	
-	public void addContent(List<Article> articles) {
+	/*public void addContent(List<Article> articles) {
 		for(Article article: articles) {
 			addContent(article);
 		}
-	}
+	}*/
 	
 	public void deleteContent(String name) {
 		executeOperation("DELETE FROM articles WHERE articles.name = '" + name + "';");
@@ -97,13 +100,14 @@ public class JDBCService {
 		executeOperation("UPDATE articles SET value = '" + value + "' WHERE (name = '" + name + "');");
 	}
 	
-	public Article getContent(String name) {
-		ResultSet rs = queryOperation("SELECT * FROM articles WHERE name = '" + name + "';");
-		Article article;
+	public String getContent(String name) {
+		System.out.println("getting content from DB");
+		ResultSet rs = queryOperation("SELECT articles.value FROM articles WHERE name = '" + name + "';");
+		String content;
 		try {
 			if(rs.next()) {
-				article = new Article(rs.getString("name"), rs.getString("value"));
-				return article;
+				content = new String(rs.getString("value"));
+				return content;
 			}
 			else {
 				return null;

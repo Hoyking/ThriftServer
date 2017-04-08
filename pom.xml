@@ -25,6 +25,8 @@
 	
 	<!-- h2database -->
 	<h2.version>1.4.193</h2.version>
+	<axis2.version>1.6.3</axis2.version>
+	<sqlite-jdbc.version>3.16.1</sqlite-jdbc.version>
   </properties>
 
   <dependencies>
@@ -66,8 +68,15 @@
 		<dependency>
     		<groupId>org.xerial</groupId>
     		<artifactId>sqlite-jdbc</artifactId>
-    		<version>3.16.1</version>
+    		<version>${sqlite-jdbc.version}</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.axis2/axis2 -->
+		<dependency>
+    		<groupId>org.apache.axis2</groupId>
+    		<artifactId>axis2</artifactId>
+    		<version>${axis2.version}</version>
+		</dependency>		
 		
   </dependencies>
 </project>
