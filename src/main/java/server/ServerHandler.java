@@ -13,7 +13,7 @@ import service.soap.AxisDirectory;
 public class ServerHandler {
 
 	public void handle() {
-		/*try {
+		try {
 			TServerTransport serverTransport = new TServerSocket(9090);
 		    TServer server = new TThreadPoolServer(new
 		    TThreadPoolServer.Args(serverTransport).processor(new ArticleService.Processor<ArticleServiceImpl>
@@ -22,9 +22,6 @@ public class ServerHandler {
 		    server.serve();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}*/
-		//new AxisDirectory(JDBCService.getInstance());
-		System.out.println("Thrift Server");
-		JDBCService.getInstance();
+		}
 	}
 }

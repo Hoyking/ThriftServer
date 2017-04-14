@@ -6,11 +6,11 @@ import database.JDBCService;
 
 public class AxisDirectory {
 
-	private JDBCService jdbcService = JDBCService.getInstance();
+	private JDBCService jdbcService;
 	
-	/*public AxisDirectory(JDBCService jdbcService) {
-		this.jdbcService = jdbcService;
-	}*/
+	public AxisDirectory() {
+		this.jdbcService = JDBCService.getInstance();
+	}
 	
 	public List<String> getTitles() {
 		List<String> titles = jdbcService.getTitleContent();
