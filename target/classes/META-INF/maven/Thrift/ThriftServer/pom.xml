@@ -10,12 +10,80 @@
   <name>ThriftServer</name>
   <url>http://maven.apache.org</url>
 
+<build>
+ 
+  <plugins>
+   
+      <!-- Maven JAR Plugin --> 
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.0.2</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>controller.ConnectionController</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+ 
+ 
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-resources-plugin</artifactId>
+        <version>3.0.2</version>
+	</plugin>
+	
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>3.0.0</version>
+	</plugin>
+ 
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+			<source>${java.version}</source>
+            <target>${java.version}</target>
+            <encoding>UTF-8</encoding>
+		</configuration>
+        <version>3.6.1</version>
+	</plugin>
+ 
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.19.1</version>
+	</plugin>  
+
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>2.5.2</version>
+	</plugin>
+	
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.8.2</version>
+	</plugin>
+	
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.6</version>
+	</plugin>
+ 
+  </plugins>
+ 
+</build>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     
     <!-- Logging -->
-	<logback.version>1.2.1</logback.version>
-	<slf4j.version>1.7.24</slf4j.version>
 
 	<!-- Test -->
 	<junit.version>4.12</junit.version>
@@ -27,24 +95,37 @@
 	<h2.version>1.4.193</h2.version>
 	<axis2.version>1.6.3</axis2.version>
 	<sqlite-jdbc.version>3.16.1</sqlite-jdbc.version>
+	<java.version>1.8</java.version>
+	<log4j.version>1.2.17</log4j.version>
+	<sl4j.version>1.7.25</sl4j.version>
+	<logback.version>1.2.3</logback.version>
+	<mockito.version>2.0.2-beta</mockito.version>
   </properties>
 
   <dependencies>
   
-    <!-- Logging with SLF4J & LogBack -->
+  		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
-			<scope>runtime</scope>
+    		<groupId>org.slf4j</groupId>
+    		<artifactId>slf4j-api</artifactId>
+    		<version>${sl4j.version}</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+		<dependency>
+    		<groupId>ch.qos.logback</groupId>
+    		<artifactId>logback-classic</artifactId>
+    		<version>${logback.version}</version>
+		</dependency>
+		  		
+  
+  		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+		<dependency>
+    		<groupId>log4j</groupId>
+    		<artifactId>log4j</artifactId>
+    		<version>${log4j.version}</version>
+		</dependency>
+  		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -56,12 +137,6 @@
   			<groupId>org.apache.thrift</groupId>
   			<artifactId>libthrift</artifactId>
   			<version>${libthrift.version}</version>
-		</dependency>
-
-		<dependency>
-    		<groupId>com.h2database</groupId>
-   			<artifactId>h2</artifactId>
-    		<version>${h2.version}</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
@@ -77,6 +152,13 @@
     		<artifactId>axis2</artifactId>
     		<version>${axis2.version}</version>
 		</dependency>		
+		
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+		<dependency>
+    		<groupId>org.mockito</groupId>
+    		<artifactId>mockito-all</artifactId>
+    		<version>${mockito.version}</version>
+		</dependency>
 		
   </dependencies>
 </project>
