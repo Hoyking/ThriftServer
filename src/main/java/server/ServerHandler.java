@@ -9,7 +9,7 @@ import database.JDBCService;
 import service.rpc.ArticleService;
 import service.rpc.ArticleServiceImpl;
 
-/** Класс служит для инициализации RPC сервера
+/** РљР»Р°СЃСЃ СЃР»СѓР¶РёС‚ РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё RPC СЃРµСЂРІРµСЂР°
  * 
  * @author Parfenenko Artem
  * @version 1.0
@@ -17,7 +17,7 @@ import service.rpc.ArticleServiceImpl;
  */
 public class ServerHandler {
 
-	/** Метод служит для инициализации RPC сервера */
+	/** РњРµС‚РѕРґ СЃР»СѓР¶РёС‚ РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё RPC СЃРµСЂРІРµСЂР° */
 	public void handle() {
 		try {
 			TServerTransport serverTransport = new TServerSocket(9090);

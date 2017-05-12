@@ -10,7 +10,7 @@ import java.util.List;
 
 import starter.Starter;
 
-/** Класс служит для реализации взаимодействия с базой данных, используя SQLite JDBC
+/** РљР»Р°СЃСЃ СЃР»СѓР¶РёС‚ РґР»СЏ СЂРµР°Р»РёР·Р°С†РёРё РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ СЃ Р±Р°Р·РѕР№ РґР°РЅРЅС‹С…, РёСЃРїРѕР»СЊР·СѓСЏ SQLite JDBC
  * 
  * @author Parfenenko Artem
  * @version 1.0
@@ -20,10 +20,10 @@ public class JDBCService {
 	
 	private Connection connection;
 	private Statement statement;
-	/** Поле - экземпляр класса JDBCService */
+	/** РџРѕР»Рµ - СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° JDBCService */
 	private static JDBCService jdbcservice;
 	
-	/** Приватный конструктор для инициализации соединения с базой данных */
+	/** РџСЂРёРІР°С‚РЅС‹Р№ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё СЃРѕРµРґРёРЅРµРЅРёСЏ СЃ Р±Р°Р·РѕР№ РґР°РЅРЅС‹С… */
 	private JDBCService() {
 		try {
 			Starter.getLogger().info("Connection to the database");
@@ -39,9 +39,9 @@ public class JDBCService {
         createTable();
 	}
 	
-	/** Метод возвращает экземпляр класса
+	/** РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР°
 	 * 
-	 * @return экземпляр JDBCService
+	 * @return СЌРєР·РµРјРїР»СЏСЂ JDBCService
 	 */
 	public static JDBCService getInstance() {
 		if(jdbcservice == null) {
@@ -50,9 +50,9 @@ public class JDBCService {
 		return jdbcservice;
 	}
 	
-	/** Метод посылает запрос к БД с целью изменения хранящейся информации
+	/** РњРµС‚РѕРґ РїРѕСЃС‹Р»Р°РµС‚ Р·Р°РїСЂРѕСЃ Рє Р‘Р” СЃ С†РµР»СЊСЋ РёР·РјРµРЅРµРЅРёСЏ С…СЂР°РЅСЏС‰РµР№СЃСЏ РёРЅС„РѕСЂРјР°С†РёРё
 	 * 
-	 * @param sql строка запроса к БД
+	 * @param sql СЃС‚СЂРѕРєР° Р·Р°РїСЂРѕСЃР° Рє Р‘Р”
 	 */
 	private void executeOperation(String sql) {
 		try {
@@ -68,10 +68,10 @@ public class JDBCService {
 		}
 	}
 	
-	/** Метод посылает запрос к БД с целью получения информации из БД
+	/** РњРµС‚РѕРґ РїРѕСЃС‹Р»Р°РµС‚ Р·Р°РїСЂРѕСЃ Рє Р‘Р” СЃ С†РµР»СЊСЋ РїРѕР»СѓС‡РµРЅРёСЏ РёРЅС„РѕСЂРјР°С†РёРё РёР· Р‘Р”
 	 * 
-	 * @param sql строка запроса к БД
-	 * @return запрашиваемая информация
+	 * @param sql СЃС‚СЂРѕРєР° Р·Р°РїСЂРѕСЃР° Рє Р‘Р”
+	 * @return Р·Р°РїСЂР°С€РёРІР°РµРјР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ
 	 */
 	private ResultSet queryOperation(String sql) {
 		ResultSet rs;
@@ -91,7 +91,7 @@ public class JDBCService {
 		}
 	}
 	
-	/** Метод служит для создания таблицы articles в БД */
+	/** РњРµС‚РѕРґ СЃР»СѓР¶РёС‚ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ С‚Р°Р±Р»РёС†С‹ articles РІ Р‘Р” */
 	private void createTable() {
 		try {
 			statement.execute("CREATE TABLE articles(name varchar(100) NOT NULL UNIQUE, value varchar(100));");
@@ -107,42 +107,42 @@ public class JDBCService {
 		}
 	}
 	
-	/** Метод посылает запрос к БД с целью добавления новой статьи
+	/** РњРµС‚РѕРґ РїРѕСЃС‹Р»Р°РµС‚ Р·Р°РїСЂРѕСЃ Рє Р‘Р” СЃ С†РµР»СЊСЋ РґРѕР±Р°РІР»РµРЅРёСЏ РЅРѕРІРѕР№ СЃС‚Р°С‚СЊРё
 	 * 
-	 * @param name имя новой статьи
-	 * @param value содержание новой статьи
+	 * @param name РёРјСЏ РЅРѕРІРѕР№ СЃС‚Р°С‚СЊРё
+	 * @param value СЃРѕРґРµСЂР¶Р°РЅРёРµ РЅРѕРІРѕР№ СЃС‚Р°С‚СЊРё
 	 */
 	public void addContent(String name, String value) {
 		executeOperation("INSERT INTO articles(name, value) VALUES('" + name + "', '" + value + "');");
 	}
 	
-	/** Метод посылает запрос к БД с целью удаления статьи
+	/** РњРµС‚РѕРґ РїРѕСЃС‹Р»Р°РµС‚ Р·Р°РїСЂРѕСЃ Рє Р‘Р” СЃ С†РµР»СЊСЋ СѓРґР°Р»РµРЅРёСЏ СЃС‚Р°С‚СЊРё
 	 * 
-	 * @param name имя удаляемой статьи
+	 * @param name РёРјСЏ СѓРґР°Р»СЏРµРјРѕР№ СЃС‚Р°С‚СЊРё
 	 */
 	public void deleteContent(String name) {
 		executeOperation("DELETE FROM articles WHERE articles.name = '" + name + "';");
 	}
 	
-	/** Метод посылает запрос к БД с целью удаления всех имеющихся в БД статей */
+	/** РњРµС‚РѕРґ РїРѕСЃС‹Р»Р°РµС‚ Р·Р°РїСЂРѕСЃ Рє Р‘Р” СЃ С†РµР»СЊСЋ СѓРґР°Р»РµРЅРёСЏ РІСЃРµС… РёРјРµСЋС‰РёС…СЃСЏ РІ Р‘Р” СЃС‚Р°С‚РµР№ */
 	public void deleteContent() {
 		executeOperation("DELETE * FROM articles;");
 	}
 	
-	/** Метод посылает запрос к БД с целью редактирования имеющейся статьи
+	/** РњРµС‚РѕРґ РїРѕСЃС‹Р»Р°РµС‚ Р·Р°РїСЂРѕСЃ Рє Р‘Р” СЃ С†РµР»СЊСЋ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РёРјРµСЋС‰РµР№СЃСЏ СЃС‚Р°С‚СЊРё
 	 * 
-	 * @param oldName имя имеющейся статьи
-	 * @param newName новое имя статьи
-	 * @param value новое содержимое статьи
+	 * @param oldName РёРјСЏ РёРјРµСЋС‰РµР№СЃСЏ СЃС‚Р°С‚СЊРё
+	 * @param newName РЅРѕРІРѕРµ РёРјСЏ СЃС‚Р°С‚СЊРё
+	 * @param value РЅРѕРІРѕРµ СЃРѕРґРµСЂР¶РёРјРѕРµ СЃС‚Р°С‚СЊРё
 	 */
 	public void editContent(String oldName, String newName, String value) {
 		executeOperation("UPDATE articles SET name = '" + newName + "', value = '" + value + "' WHERE (name = '" + oldName + "');");
 	}
 	
-	/** Метод посылает запрос к БД с целью получения содержимого имеющейся статьи
+	/** РњРµС‚РѕРґ РїРѕСЃС‹Р»Р°РµС‚ Р·Р°РїСЂРѕСЃ Рє Р‘Р” СЃ С†РµР»СЊСЋ РїРѕР»СѓС‡РµРЅРёСЏ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ РёРјРµСЋС‰РµР№СЃСЏ СЃС‚Р°С‚СЊРё
 	 * 
-	 * @param name имя искомой статьи
-	 * @return содержимое искомой статьи
+	 * @param name РёРјСЏ РёСЃРєРѕРјРѕР№ СЃС‚Р°С‚СЊРё
+	 * @return СЃРѕРґРµСЂР¶РёРјРѕРµ РёСЃРєРѕРјРѕР№ СЃС‚Р°С‚СЊРё
 	 */
 	public String getContent(String name) {
 		ResultSet rs = queryOperation("SELECT articles.value FROM articles WHERE name = '" + name + "';");
@@ -167,9 +167,9 @@ public class JDBCService {
 		}
 	}
 	
-	/** Метод посылает запрос к БД с целью получения списка заголовков имеющихся в БД статей
+	/** РњРµС‚РѕРґ РїРѕСЃС‹Р»Р°РµС‚ Р·Р°РїСЂРѕСЃ Рє Р‘Р” СЃ С†РµР»СЊСЋ РїРѕР»СѓС‡РµРЅРёСЏ СЃРїРёСЃРєР° Р·Р°РіРѕР»РѕРІРєРѕРІ РёРјРµСЋС‰РёС…СЃСЏ РІ Р‘Р” СЃС‚Р°С‚РµР№
 	 * 
-	 * @return список заголовков статей
+	 * @return СЃРїРёСЃРѕРє Р·Р°РіРѕР»РѕРІРєРѕРІ СЃС‚Р°С‚РµР№
 	 */
 	public List<String> getTitleContent() {
 		List<String> titles = new ArrayList<String>();

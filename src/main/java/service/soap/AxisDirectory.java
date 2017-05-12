@@ -5,7 +5,7 @@ import java.util.List;
 import database.JDBCService;
 import starter.Starter;
 
-/** Класс служит для реализации документно-ориентированнного типа соединения
+/** РљР»Р°СЃСЃ СЃР»СѓР¶РёС‚ РґР»СЏ СЂРµР°Р»РёР·Р°С†РёРё РґРѕРєСѓРјРµРЅС‚РЅРѕ-РѕСЂРёРµРЅС‚РёСЂРѕРІР°РЅРЅРЅРѕРіРѕ С‚РёРїР° СЃРѕРµРґРёРЅРµРЅРёСЏ
  * 
  * @author Parfenenko Artem
  * @version 1.0
@@ -13,20 +13,20 @@ import starter.Starter;
  */
 public class AxisDirectory {
 
-	/** Поле - экземпляр класса для работы с JDBC
+	/** РџРѕР»Рµ - СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ JDBC
 	 * @see database.JDBCService
 	 */
 	private JDBCService jdbcService;
 	
-	/** Конструктор для инициализации jdbcService и создания экземпляра класса
-	 * @param jdbcService экземпляр класса JDBCService
+	/** РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё jdbcService Рё СЃРѕР·РґР°РЅРёСЏ СЌРєР·РµРјРїР»СЏСЂР° РєР»Р°СЃСЃР°
+	 * @param jdbcService СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° JDBCService
 	 */
 	public AxisDirectory() {
 		this.jdbcService = JDBCService.getInstance();
 	}
 	
-	/** Метод для получения списка заголовков статей справочника
-	 * @return список заголовков статей
+	/** РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ СЃРїРёСЃРєР° Р·Р°РіРѕР»РѕРІРєРѕРІ СЃС‚Р°С‚РµР№ СЃРїСЂР°РІРѕС‡РЅРёРєР°
+	 * @return СЃРїРёСЃРѕРє Р·Р°РіРѕР»РѕРІРєРѕРІ СЃС‚Р°С‚РµР№
 	 */
 	public List<String> getTitles() {
 		Starter.getLogger().info("Reading titles from the database");
@@ -34,10 +34,10 @@ public class AxisDirectory {
 		return titles;
 	}
 
-	/** Метод для редактирования статьи
-	 * @param oldName текущее имя искомой статьи
-	 * @param newName новое имя статьи
-	 * @param value новое содержимое статьи
+	/** РњРµС‚РѕРґ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ СЃС‚Р°С‚СЊРё
+	 * @param oldName С‚РµРєСѓС‰РµРµ РёРјСЏ РёСЃРєРѕРјРѕР№ СЃС‚Р°С‚СЊРё
+	 * @param newName РЅРѕРІРѕРµ РёРјСЏ СЃС‚Р°С‚СЊРё
+	 * @param value РЅРѕРІРѕРµ СЃРѕРґРµСЂР¶РёРјРѕРµ СЃС‚Р°С‚СЊРё
 	 */
 	public void editArticle(String oldName, String newName, String value) throws ArticleNotFoundFault {
 		Starter.getLogger().info("Editing article with name '" + oldName + "'");
@@ -49,8 +49,8 @@ public class AxisDirectory {
 		jdbcService.editContent(oldName, newName, value);
 	}
 
-	/** Метод для удаления статьи
-	 * @param name имя удаляемой статьи
+	/** РњРµС‚РѕРґ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ СЃС‚Р°С‚СЊРё
+	 * @param name РёРјСЏ СѓРґР°Р»СЏРµРјРѕР№ СЃС‚Р°С‚СЊРё
 	 */
 	public void deleteArticle(String name) throws ArticleNotFoundFault {
 		Starter.getLogger().info("Deleting article with name '" + name + "'");
@@ -60,23 +60,23 @@ public class AxisDirectory {
 		jdbcService.deleteContent(name);
 	}
 	
-	/** Метод для удаления всех статей в справочнике
+	/** РњРµС‚РѕРґ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ РІСЃРµС… СЃС‚Р°С‚РµР№ РІ СЃРїСЂР°РІРѕС‡РЅРёРєРµ
 	 */
 	public void deleteArticles() {
 		jdbcService.deleteContent();
 	}
 
-	/** Метод для создания статьи
-	 * @param name имя создаваемой статьи
-	 * @param value содержание создаваемой статьи 
+	/** РњРµС‚РѕРґ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ СЃС‚Р°С‚СЊРё
+	 * @param name РёРјСЏ СЃРѕР·РґР°РІР°РµРјРѕР№ СЃС‚Р°С‚СЊРё
+	 * @param value СЃРѕРґРµСЂР¶Р°РЅРёРµ СЃРѕР·РґР°РІР°РµРјРѕР№ СЃС‚Р°С‚СЊРё 
 	 */
 	public void createArticle(String name, String value) {
 		jdbcService.addContent(name, value);
 	}
 
-	/** Метод для получения содержимого статьи
-	 * @param name имя искомой статьи
-	 * @return содержимое искомой статьи
+	/** РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ СЃС‚Р°С‚СЊРё
+	 * @param name РёРјСЏ РёСЃРєРѕРјРѕР№ СЃС‚Р°С‚СЊРё
+	 * @return СЃРѕРґРµСЂР¶РёРјРѕРµ РёСЃРєРѕРјРѕР№ СЃС‚Р°С‚СЊРё
 	 */
 	public String getContent(String name) throws ArticleNotFoundFault {
 		String curValue = jdbcService.getContent(name);

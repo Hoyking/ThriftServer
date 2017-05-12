@@ -7,7 +7,7 @@ import org.apache.thrift.TException;
 import database.JDBCService;
 import starter.Starter;
 
-/** Класс служит для реализации интерфейса работы с RPC типом соединения
+/** РљР»Р°СЃСЃ СЃР»СѓР¶РёС‚ РґР»СЏ СЂРµР°Р»РёР·Р°С†РёРё РёРЅС‚РµСЂС„РµР№СЃР° СЂР°Р±РѕС‚С‹ СЃ RPC С‚РёРїРѕРј СЃРѕРµРґРёРЅРµРЅРёСЏ
  * 
  * @author Parfenenko Artem
  * @version 1.0
@@ -15,20 +15,20 @@ import starter.Starter;
  */
 public class ArticleServiceImpl implements ArticleService.Iface {
 
-	/** Поле - экземпляр класса для работы с JDBC
+	/** РџРѕР»Рµ - СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ JDBC
 	 * @see database.JDBCService
 	 */
 	private JDBCService jdbcService;
 	
-	/** Конструктор для инициализации jdbcService и создания экземпляра класса
-	 * @param jdbcService экземпляр класса JDBCService
+	/** РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё jdbcService Рё СЃРѕР·РґР°РЅРёСЏ СЌРєР·РµРјРїР»СЏСЂР° РєР»Р°СЃСЃР°
+	 * @param jdbcService СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° JDBCService
 	 */
 	public ArticleServiceImpl(JDBCService jdbcService) {
 		this.jdbcService = jdbcService;
 	}
 
-	/** Метод для получения списка заголовков статей справочника
-	 * @return список заголовков статей
+	/** РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ СЃРїРёСЃРєР° Р·Р°РіРѕР»РѕРІРєРѕРІ СЃС‚Р°С‚РµР№ СЃРїСЂР°РІРѕС‡РЅРёРєР°
+	 * @return СЃРїРёСЃРѕРє Р·Р°РіРѕР»РѕРІРєРѕРІ СЃС‚Р°С‚РµР№
 	 */
 	public List<String> getTitles() throws TException {
 		Starter.getLogger().info("Reading titles from the database");
@@ -36,10 +36,10 @@ public class ArticleServiceImpl implements ArticleService.Iface {
 		return titles;
 	}
 
-	/** Метод для редактирования статьи
-	 * @param oldName текущее имя искомой статьи
-	 * @param newName новое имя статьи
-	 * @param value новое содержимое статьи
+	/** РњРµС‚РѕРґ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ СЃС‚Р°С‚СЊРё
+	 * @param oldName С‚РµРєСѓС‰РµРµ РёРјСЏ РёСЃРєРѕРјРѕР№ СЃС‚Р°С‚СЊРё
+	 * @param newName РЅРѕРІРѕРµ РёРјСЏ СЃС‚Р°С‚СЊРё
+	 * @param value РЅРѕРІРѕРµ СЃРѕРґРµСЂР¶РёРјРѕРµ СЃС‚Р°С‚СЊРё
 	 */
 	public void editArticle(String oldName, String newName, String value) throws ArticleNotFoundException, TException {
 		Starter.getLogger().info("Editing article with name '" + oldName + "'");
@@ -51,8 +51,8 @@ public class ArticleServiceImpl implements ArticleService.Iface {
 		jdbcService.editContent(oldName, newName, value);
 	}
 
-	/** Метод для удаления статьи
-	 * @param name имя удаляемой статьи
+	/** РњРµС‚РѕРґ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ СЃС‚Р°С‚СЊРё
+	 * @param name РёРјСЏ СѓРґР°Р»СЏРµРјРѕР№ СЃС‚Р°С‚СЊРё
 	 */
 	public void deleteArticle(String name) throws ArticleNotFoundException, TException {
 		Starter.getLogger().info("Deleting article with name '" + name + "'");
@@ -64,25 +64,25 @@ public class ArticleServiceImpl implements ArticleService.Iface {
 		jdbcService.deleteContent(name);
 	}
 	
-	/** Метод для удаления всех статей в справочнике
+	/** РњРµС‚РѕРґ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ РІСЃРµС… СЃС‚Р°С‚РµР№ РІ СЃРїСЂР°РІРѕС‡РЅРёРєРµ
 	 */
 	public void deleteArticles() throws TException {
 		Starter.getLogger().info("Deleting all articles from the database");
 		jdbcService.deleteContent();
 	}
 
-	/** Метод для создания статьи
-	 * @param name имя создаваемой статьи
-	 * @param value содержание создаваемой статьи 
+	/** РњРµС‚РѕРґ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ СЃС‚Р°С‚СЊРё
+	 * @param name РёРјСЏ СЃРѕР·РґР°РІР°РµРјРѕР№ СЃС‚Р°С‚СЊРё
+	 * @param value СЃРѕРґРµСЂР¶Р°РЅРёРµ СЃРѕР·РґР°РІР°РµРјРѕР№ СЃС‚Р°С‚СЊРё 
 	 */
 	public void createArticle(String name, String value) throws TException {
 		Starter.getLogger().info("Creating a new article");
 		jdbcService.addContent(name, value);
 	}
 
-	/** Метод для получения содержимого статьи
-	 * @param name имя искомой статьи
-	 * @return содержимое искомой статьи
+	/** РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ СЃС‚Р°С‚СЊРё
+	 * @param name РёРјСЏ РёСЃРєРѕРјРѕР№ СЃС‚Р°С‚СЊРё
+	 * @return СЃРѕРґРµСЂР¶РёРјРѕРµ РёСЃРєРѕРјРѕР№ СЃС‚Р°С‚СЊРё
 	 */
 	public String getContent(String name) throws ArticleNotFoundException, TException {
 		if(name.length() > 0)

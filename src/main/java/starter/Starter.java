@@ -3,19 +3,19 @@ package starter;
 import org.apache.log4j.Logger;
 import server.ServerHandler;
 
-/** Класс служит для создания экземпляра логгера и точки входа в программу
+/** РљР»Р°СЃСЃ СЃР»СѓР¶РёС‚ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ СЌРєР·РµРјРїР»СЏСЂР° Р»РѕРіРіРµСЂР° Рё С‚РѕС‡РєРё РІС…РѕРґР° РІ РїСЂРѕРіСЂР°РјРјСѓ
  *
  */
 public class Starter {
 
-	/** Экземпляр логгера */
+	/** Р­РєР·РµРјРїР»СЏСЂ Р»РѕРіРіРµСЂР° */
 	private static final Logger log = Logger.getLogger(Starter.class);
 	
 	public static Logger getLogger() {
 		return log;
 	}
 	
-	/** Метод main */
+	/** РњРµС‚РѕРґ main */
 	public static void main(String[] args) {
 		ServerHandler serverHandler = new ServerHandler();
 		serverHandler.handle();
